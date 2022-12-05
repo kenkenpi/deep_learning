@@ -43,7 +43,9 @@ scatter(x2,y2,'b','+');
 hold on
 scatter(x3,y3,'g','p');
 hold on
+
 %%
+
 w11=0.1;
 w12=1;
 w21=0.1;
@@ -57,6 +59,9 @@ Y=[y1;y2;y3];
 F=[X,Y];
 eta=0.1; 
 delta_w_sum=zeros(2,2);
+
+%%
+
 for j=30000
     for i=1:N*K
         [cerrect_o1,cerrect_o2]=t(i);
@@ -72,10 +77,16 @@ for j=30000
         w=w+delta_w_sum*eta;
         b=b+delta_b_sum*eta;
 end
+
+%%
+
 X=-10:1:10;
 Y1=-1*w(1,1)/w(1,2)*X-b(1,1)/w(1,2);
 Y2=-1*w(2,1)/w(2,2)*X-b(2,1)/w(2,2);
 plot(X,Y1,X,Y2);
+
+%%
+
 function [output1,output2]=t(i)
 N=100;
     if i<=N
@@ -90,10 +101,14 @@ N=100;
         end
     end
 end
+
+%%
+
 function [output1,output2]=softmax(x)
     output1=exp(x(1,1))/(exp(x(1,1))+exp(x(2,1)));
     output2=exp(x(2,1))/(exp(x(1,1))+exp(x(2,1)));
 end
+
 %%
 
 
